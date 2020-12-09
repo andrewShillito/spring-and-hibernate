@@ -2,15 +2,30 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:integration="http://www.springframework.org/schema/integration"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
+           
+    <context:property-placeholder location="sport.properties"/>
 
 	<bean id="coach" class="coach.BaseballCoach">
-		<constructor-arg ref="fortuneService"/>
+		<constructor-arg ref="fortuneService"/> <!-- constructor dependency injection --> 
 	</bean>
 	
-	<bean id="fortuneService" class="fortune.HappyFortuneService"/>
+	<bean id="fortuneService" class="fortune.HappyFortuneService"/> <!-- a dependency to inject -->
+	
+	<bean id="cricketCoach" class="coach.CricketCoach">
+	  <property name="fortuneService" ref="fortuneService"/> <!-- setter dependency injection name = property name, ref = bean ref -->
+	  														 <!-- ref is used to refer to other objects -->
+	  														 
+	  <!-- <property name="emailAddress" value="sunrisers@hyderabadSunrisers.com"/> --> <!-- setter injection of literal string values -->
+	  <!-- <property name="team" value="Sunrisers Hyderabad"/> --> 					   <!-- value is used to refer to literal values -->
+	  
+	  <property name="emailAddress" value="${cricketCoach.email}"/> <!-- setter injection of properties file values -->
+	  <property name="team" value="${cricketCoach.team}"/>
+	  
+	</bean>
 	
 </beans>
