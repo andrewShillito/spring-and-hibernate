@@ -14,7 +14,7 @@
 		<constructor-arg ref="fortuneService"/> <!-- constructor dependency injection --> 
 	</bean>
 	
-	<bean id="fortuneService" class="fortune.HappyFortuneService"/> <!-- a dependency to inject -->
+	<bean id="fortuneService" class="fortune.RandomFortuneService"/> <!-- a dependency to inject -->
 	
 	<bean id="cricketCoach" class="coach.CricketCoach">
 	  <property name="fortuneService" ref="fortuneService"/> <!-- setter dependency injection name = property name, ref = bean ref -->
