@@ -18,5 +18,12 @@ public class TrackCoach implements Coach {
 		return fortuneService.getFortune();
 	}
 
+	
+	public void initTrackCoach() {
+		System.out.println("Inside track coach custom init-method");
+	}
 
+	public void destroyTrackCoach() {
+		System.out.println("Inside track coach custom destroy-method");
+	}
 }
