@@ -643,11 +643,11 @@ function setDocumentScrollTop(ypos)
 <ol> 
  <li>Enable component scanning in Spring config file</li> 
 </ol> 
-<p>Enabling component scanning is achieved with <code>&lt;context:component-scan base-package=&quot;your.base.package&quot;/&gt;</code> in the xml config The <code>&lt;context:component-scan&gt;</code> element allows child elements <code>&lt;context:include-filter&gt;</code> and <code>&lt;context:exclude-filter&gt;</code> which can be used to include/exclude classes from being registered with the spring container</p> 
+<p>Enabling component scanning is achieved with <code>&lt;context:component-scan base-package=&quot;your.base.package&quot;/&gt;</code> in the xml config. The <code>&lt;context:component-scan&gt;</code> element allows child elements <code>&lt;context:include-filter&gt;</code> and <code>&lt;context:exclude-filter&gt;</code> which can be used to include/exclude classes from being registered with the spring container.</p> 
 <ol start="2"> 
  <li>Use the <code>@Component</code> annotation in the Java class which we wish to add to the spring container</li> 
 </ol> 
-<p>Add <code>@Component</code> annotation to required beans in the package so they will be automatically registered with the spring container. If a bean id is stated explicitly, spring will generate a default id. Takes the class name and makes the first letter lower-case. IE: TennisCoach default bean id = tennisCoach</p> 
+<p>Add <code>@Component</code> annotation to required beans in the package so they will be automatically registered with the spring container. If a bean id is stated explicitly, spring will generate a default id. Takes the class name and makes the first letter lower-case. IE: TennisCoach default bean id = tennisCoach.</p> 
 <ol start="3"> 
  <li>Spring will scan the locations configured and automatically register the annotation configured bean(s) there</li> 
  <li>Retrieve and access bean as normal from Spring container</li> 
@@ -658,6 +658,35 @@ function setDocumentScrollTop(ypos)
  <li>minimizes required xml configuration</li> 
  <li>spring does more for you</li> 
  <li>spring configuration is visible in the code it impacts</li> 
+</ol> 
+<h2> <a id="dependency-injection-with-annotation-configuration" class="anchor" href="#dependency-injection-with-annotation-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependency injection with annotation configuration</h2> 
+<ol> 
+ <li>Auto-wiring for dependency injection using the <code>@Autowired</code> annotation</li> 
+</ol> 
+<p>Spring will look for a class that matches the property by type (class or interface). When it finds a match by class or interface, it will inject them into the beans that depend on them. If there are multiple implementations of an interface, you can use the <code>@Qualifier</code> annotation to define which one you want.</p> 
+<p>There are 3 different types of auto-wired dependency injection</p> 
+<ol> 
+ <li>Constructor injection - injects dependency via constructor parameter</li> 
+</ol> 
+<pre><code>	private AnnotationFortuneService fortuneService;
+	@Autowired
+	public TennisCoach(AnnotationFortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+</code></pre> 
+<p>As of Spring Framework 4.3, an @Autowired annotation on such a constructor is no longer necessary if the target bean only defines one constructor. However, if several constructors are available, at least one must be annotated to teach the container which one to use.</p> 
+<ol start="2"> 
+ <li>Setter injection</li> 
+</ol> 
+<pre><code>	private AnnotationFortuneService fortuneService;
+	@Autowired
+	public void setFortuneService(AnnotationFortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+</code></pre> 
+<p><em>Method injection</em> - the method used to inject dependency does not have to be named setFortuneService. It can have any name as long as it is configured with the <code>@Autowired</code> annotation.</p> 
+<ol start="3"> 
+ <li>Field injections</li> 
 </ol>
 </body>
 </html>

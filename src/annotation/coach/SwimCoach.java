@@ -6,18 +6,18 @@ import org.springframework.stereotype.Component;
 import annotation.fortune.AnnotationFortuneService;
 
 @Component
-public class TennisCoach implements AnnotationCoach {
+public class SwimCoach implements AnnotationCoach {
 
 	private AnnotationFortuneService fortuneService;
 	
 	@Autowired
-	public TennisCoach(AnnotationFortuneService fortuneService) {
+	public void setFortuneService(AnnotationFortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 	
 	@Override
 	public String getDailyWorkout() {
-		return "Practice backhand volley";
+		return "Swim 100 laps";
 	}
 
 	@Override
