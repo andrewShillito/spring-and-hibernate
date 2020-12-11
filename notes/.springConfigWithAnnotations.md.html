@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>C:\Users\andre\eclipse-workspace\spring-demo\notes\.beanLifecycleNotes.md.html</title>
+<title>C:\Users\andre\eclipse-workspace\spring-demo\notes\.springConfigWithAnnotations.md.html</title>
 
 
 <style type="text/css">
@@ -639,40 +639,25 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-<h1> <a id="bean-lifecycle" class="anchor" href="#bean-lifecycle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bean Lifecycle</h1> 
-<p>Container Started -&gt; Bean Instantiated -&gt; Dependencies Injected -&gt; Internal Spring Processing -&gt; Any custom init method -&gt; Bean ready for use</p> 
-<p>When container is shutdown -&gt; Any custom destroy method -&gt; End of application</p> 
-<h2> <a id="custom-code-during-bean-initialization" class="anchor" href="#custom-code-during-bean-initialization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom code during bean initialization</h2> 
-<ul> 
- <li>accomplished with the bean configuration property <em>init-method=&quot;yourInitMethod&quot;</em> </li> 
- <li>can call custom business logic methods</li> 
- <li>can setup handles to resources ie: db, sockets, files, etc...</li> 
-</ul> 
-<h2> <a id="custom-code-during-bean-destruction" class="anchor" href="#custom-code-during-bean-destruction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom code during bean destruction</h2> 
-<ul> 
- <li>accomplished with the bean configuration property <em>destroy-method=&quot;yourDestroyMethod&quot;</em> </li> 
- <li>can call custom business logic methods</li> 
- <li>can cleanup/close handles to resources ie: db, sockets, files, etc...</li> 
- <li>For prototype scoped beans Spring does not call the destroy method. Spring does not manage the complete lifecycle of a prototype bean.</li> 
-</ul> 
-<h4> <a id="prototype-lifecycle" class="anchor" href="#prototype-lifecycle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prototype lifecycle</h4> 
-<p>Bean Instantiated -&gt; Dependencies Injected -&gt; Internal Spring Processing -&gt; Any custom init method --&gt; given to client code -&gt; no further spring reference to that bean instance This means that prototype scoped beans must be cleaned up by the client code (outside of standard java garbage collection)</p> 
-<h2> <a id="method-signatures-of-init-method-and-destroy-method-functions" class="anchor" href="#method-signatures-of-init-method-and-destroy-method-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Method signatures of init-method and destroy-method functions</h2> 
-<h4> <a id="access-modifier" class="anchor" href="#access-modifier" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Access modifier</h4> 
-<ul> 
- <li>can have any access modifier (public, protected, private)</li> 
-</ul> 
-<h4> <a id="return-type" class="anchor" href="#return-type" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Return type</h4> 
-<ul> 
- <li>can have any return type but void is the most commonly used since the return value is discarded.</li> 
-</ul> 
-<h4> <a id="method-name" class="anchor" href="#method-name" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Method name</h4> 
-<ul> 
- <li>can have any method name</li> 
-</ul> 
-<h4> <a id="arguments" class="anchor" href="#arguments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Arguments</h4> 
-<ul> 
- <li>the method cannot accept any arguments - must be no-arg</li> 
-</ul>
+<h1> <a id="spring-configuration-with-java-annotations" class="anchor" href="#spring-configuration-with-java-annotations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Spring configuration with java annotations</h1> 
+<ol> 
+ <li>Enable component scanning in Spring config file</li> 
+</ol> 
+<p>Enabling component scanning is achieved with <code>&lt;context:component-scan base-package=&quot;your.base.package&quot;/&gt;</code> in the xml config The <code>&lt;context:component-scan&gt;</code> element allows child elements <code>&lt;context:include-filter&gt;</code> and <code>&lt;context:exclude-filter&gt;</code> which can be used to include/exclude classes from being registered with the spring container</p> 
+<ol start="2"> 
+ <li>Use the <code>@Component</code> annotation in the Java class which we wish to add to the spring container</li> 
+</ol> 
+<p>Add <code>@Component</code> annotation to required beans in the package so they will be automatically registered with the spring container. If a bean id is stated explicitly, spring will generate a default id. Takes the class name and makes the first letter lower-case. IE: TennisCoach default bean id = tennisCoach</p> 
+<ol start="3"> 
+ <li>Spring will scan the locations configured and automatically register the annotation configured bean(s) there</li> 
+ <li>Retrieve and access bean as normal from Spring container</li> 
+</ol> 
+<h4> <a id="benefits" class="anchor" href="#benefits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Benefits</h4> 
+<ol> 
+ <li>less verbose than xml configuration so saves code</li> 
+ <li>minimizes required xml configuration</li> 
+ <li>spring does more for you</li> 
+ <li>spring configuration is visible in the code it impacts</li> 
+</ol>
 </body>
 </html>

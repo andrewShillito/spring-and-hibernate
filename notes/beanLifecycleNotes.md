@@ -20,7 +20,7 @@ When container is shutdown -> Any custom destroy method -> End of application
 #### Prototype lifecycle
 Bean Instantiated -> Dependencies Injected -> Internal Spring Processing -> Any custom init method --> given to client code 
 -> no further spring reference to that bean instance
-This means that prototype scoped beans must be cleaned up by the client code
+This means that prototype scoped beans must be cleaned up by the client code (outside of standard java garbage collection)
 
 ## Method signatures of init-method and destroy-method functions
 #### Access modifier
