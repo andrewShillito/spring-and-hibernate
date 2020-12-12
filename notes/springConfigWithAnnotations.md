@@ -109,3 +109,12 @@ Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No
 ### Default spring bean names
 
 Typically the class name converted to lower camel case but in the case of classes which have two upper case letters as the first characters of the class name, the name is not converted ie: URLGenerator, RESTfulClass.
+
+### Handling bean scope with annotations
+
+We can use annotations to define bean scope with the annotation `@Scope`. Default scope is singleton.
+```
+@Component
+@Scope("prototype")
+public class TennisCoach implements AnnotationCoach {
+```

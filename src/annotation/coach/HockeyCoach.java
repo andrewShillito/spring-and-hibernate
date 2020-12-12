@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import annotation.fortune.AnnotationFortuneService;
 
+// left with default singleton scope
 @Component
 public class HockeyCoach implements AnnotationCoach {
 

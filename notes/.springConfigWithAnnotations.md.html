@@ -730,6 +730,12 @@ function setDocumentScrollTop(ypos)
 	private String otherMessage;
 </code></pre> 
 <h3> <a id="default-spring-bean-names" class="anchor" href="#default-spring-bean-names" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default spring bean names</h3> 
-<p>Typically the class name converted to lower camel case but in the case of classes which have two upper case letters as the first characters of the class name, the name is not converted ie: URLGenerator, RESTfulClass.</p>
+<p>Typically the class name converted to lower camel case but in the case of classes which have two upper case letters as the first characters of the class name, the name is not converted ie: URLGenerator, RESTfulClass.</p> 
+<h3> <a id="handling-bean-scope-with-annotations" class="anchor" href="#handling-bean-scope-with-annotations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Handling bean scope with annotations</h3> 
+<p>We can use annotations to define bean scope with the annotation <code>@Scope</code>. Default scope is singleton.</p> 
+<pre><code>@Component
+@Scope(&quot;prototype&quot;)
+public class TennisCoach implements AnnotationCoach {
+</code></pre>
 </body>
 </html>
