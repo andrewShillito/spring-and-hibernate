@@ -692,6 +692,44 @@ function setDocumentScrollTop(ypos)
 <pre><code>   @Autowired
 	private AnnotationFortuneService fortuneService;
 	// no need for setter method, spring will use reflection to set this field
-</code></pre>
+</code></pre> 
+<h3> <a id="qualifier" class="anchor" href="#qualifier" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Qualifier</h3> 
+<p>If there are multiple beans which implement the same interface and the interface is being injected as a dependency using autowiring you will need to use the annotation <code>@Qualifier</code> otherwise spring will throw an exception during the dependency injection process. The error thrown is shown below and an example configurations using <code>@Qualifier</code>.</p> 
+<pre><code>Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'annotation.fortune.AnnotationFortuneService' available: expected single matching bean but found 2: annotationHappyFortuneService,confusingAnnotationFortuneService
+</code></pre> 
+<pre><code>   // qualifier with field injection
+	@Autowired
+	@Qualifier(&quot;annotationHappyFortuneService&quot;)
+	private AnnotationFortuneService fortuneService;
+	// no need for setter method, spring will use reflection to set this field
+</code></pre> 
+<pre><code>   // qualifier with setter injection
+	private AnnotationFortuneService fortuneService;
+	
+	@Autowired
+	@Qualifier(&quot;annotationHappyFortuneService&quot;)
+	public void setFortuneService(AnnotationFortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+</code></pre> 
+<pre><code>   // qualifier with constructor injection
+	private AnnotationFortuneService fortuneService;
+	
+	@Autowired
+	public TennisCoach(@Qualifier(&quot;confusingAnnotationFortuneService&quot;) AnnotationFortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+</code></pre> 
+<h3> <a id="annotation-injection-of-properties-file-values" class="anchor" href="#annotation-injection-of-properties-file-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Annotation injection of properties file values</h3> 
+<ol> 
+ <li>Create a properties file to hold your properties. It will be a name value pair. File must be placed in src/.*</li> 
+ <li>Load the properties file in the XML config file using <code>&lt;context:property-placeholder location=&quot;classpath:sport.properties&quot;/&gt;</code> </li> 
+ <li>Inject the properties values into the bean which requires them:</li> 
+</ol> 
+<pre><code>	@Value(&quot;${coach.otherMessage}&quot;)
+	private String otherMessage;
+</code></pre> 
+<h3> <a id="default-spring-bean-names" class="anchor" href="#default-spring-bean-names" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default spring bean names</h3> 
+<p>Typically the class name converted to lower camel case but in the case of classes which have two upper case letters as the first characters of the class name, the name is not converted ie: URLGenerator, RESTfulClass.</p>
 </body>
 </html>

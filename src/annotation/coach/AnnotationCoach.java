@@ -5,4 +5,6 @@ public interface AnnotationCoach {
 	public String getDailyWorkout();
 	
 	public String getDailyFortune();
+	
+	public String getOtherMessage();
 }

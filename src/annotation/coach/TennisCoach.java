@@ -1,6 +1,8 @@
 package annotation.coach;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import annotation.fortune.AnnotationFortuneService;
@@ -8,10 +10,13 @@ import annotation.fortune.AnnotationFortuneService;
 @Component
 public class TennisCoach implements AnnotationCoach {
 
+	@Value("${coach.otherMessage}")
+	private String otherMessage;
+	
 	private AnnotationFortuneService fortuneService;
 	
 	@Autowired
-	public TennisCoach(AnnotationFortuneService fortuneService) {
+	public TennisCoach(@Qualifier("confusingAnnotationFortuneService") AnnotationFortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 	
@@ -24,4 +29,11 @@ public class TennisCoach implements AnnotationCoach {
 	public String getDailyFortune() {
 		return fortuneService.getFortune();
 	}
+
+	@Override
+	public String getOtherMessage() {
+		return otherMessage;
+	}
+	
+	
 }

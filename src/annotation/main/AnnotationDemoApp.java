@@ -18,12 +18,15 @@ public class AnnotationDemoApp {
 		// call methods on the bean
 		System.out.println(coach.getDailyWorkout());
 		System.out.println(coach.getDailyFortune());
+		System.out.println(coach.getOtherMessage());
 		
 		System.out.println(swimCoach.getDailyWorkout());
 		System.out.println(swimCoach.getDailyFortune());
+		System.out.println(swimCoach.getOtherMessage());
 		
 		System.out.println(hockeyCoach.getDailyWorkout());
 		System.out.println(hockeyCoach.getDailyFortune());
+		System.out.println(hockeyCoach.getOtherMessage());
 		
 		// close the context
 		context.close();

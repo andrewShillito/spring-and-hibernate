@@ -11,4 +11,6 @@
 	<context:component-scan base-package="annotation.coach"/> <!-- automatically scan for coach package components -->
 	<context:component-scan base-package="annotation.fortune"/><!-- automatically scan for fortune package components -->
 	
+	<context:property-placeholder location="classpath:sport.properties"/>
+	
 </beans>

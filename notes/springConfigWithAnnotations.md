@@ -62,3 +62,50 @@ Field injection is applied directly to the field. `@Autowired` annotation is add
 	// no need for setter method, spring will use reflection to set this field
 ```
 
+### Qualifier
+
+If there are multiple beans which implement the same interface and the interface is being injected as a dependency using autowiring you will need to use the annotation `@Qualifier` otherwise spring will throw an exception during the dependency injection process. The error thrown is shown below and an example configurations using `@Qualifier`.
+
+```
+Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'annotation.fortune.AnnotationFortuneService' available: expected single matching bean but found 2: annotationHappyFortuneService,confusingAnnotationFortuneService
+```
+
+```
+   // qualifier with field injection
+	@Autowired
+	@Qualifier("annotationHappyFortuneService")
+	private AnnotationFortuneService fortuneService;
+	// no need for setter method, spring will use reflection to set this field
+```
+```
+   // qualifier with setter injection
+	private AnnotationFortuneService fortuneService;
+	
+	@Autowired
+	@Qualifier("annotationHappyFortuneService")
+	public void setFortuneService(AnnotationFortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+```
+```
+   // qualifier with constructor injection
+	private AnnotationFortuneService fortuneService;
+	
+	@Autowired
+	public TennisCoach(@Qualifier("confusingAnnotationFortuneService") AnnotationFortuneService fortuneService) {
+		this.fortuneService = fortuneService;
+	}
+```
+
+### Annotation injection of properties file values
+1. Create a properties file to hold your properties. It will be a name value pair. File must be placed in src/.*
+2. Load the properties file in the XML config file using `<context:property-placeholder location="classpath:sport.properties"/>`
+3. Inject the properties values into the bean which requires them:
+```
+	@Value("${coach.otherMessage}")
+	private String otherMessage;
+```
+
+### Default spring bean names
+
+Typically the class name converted to lower camel case but in the case of classes which have two upper case letters as the first characters of the class name, the name is not converted ie: URLGenerator, RESTfulClass.
