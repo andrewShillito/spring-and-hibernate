@@ -686,7 +686,12 @@ function setDocumentScrollTop(ypos)
 </code></pre> 
 <p><em>Method injection</em> - the method used to inject dependency does not have to be named setFortuneService. It can have any name as long as it is configured with the <code>@Autowired</code> annotation.</p> 
 <ol start="3"> 
- <li>Field injections</li> 
-</ol>
+ <li>Field injection</li> 
+</ol> 
+<p>Field injection is applied directly to the field. <code>@Autowired</code> annotation is added directly to the field where the dependency is stored in the bean.</p> 
+<pre><code>   @Autowired
+	private AnnotationFortuneService fortuneService;
+	// no need for setter method, spring will use reflection to set this field
+</code></pre>
 </body>
 </html>

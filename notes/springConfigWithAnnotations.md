@@ -48,7 +48,17 @@ As of Spring Framework 4.3, an @Autowired annotation on such a constructor is no
 	}
 ```
 
+
 *Method injection* - the method used to inject dependency does not have to be named setFortuneService. It can have any name as long as it is configured with the `@Autowired` annotation.
 
-3. Field injections
+
+3. Field injection
+
+Field injection is applied directly to the field. `@Autowired` annotation is added directly to the field where the dependency is stored in the bean.
+
+```
+   @Autowired
+	private AnnotationFortuneService fortuneService;
+	// no need for setter method, spring will use reflection to set this field
+```
 
