@@ -2,7 +2,7 @@ package javaConfig.main;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import coach.Coach;
+import javaConfig.coach.TrackCoach;
 import javaConfig.config.JavaConfig;
 
 public class JavaConfigDemoApp {
@@ -13,11 +13,14 @@ public class JavaConfigDemoApp {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
 		
 		// retrieve beans from the container
-		Coach coach = context.getBean("trackCoach", Coach.class);
+		TrackCoach coach = context.getBean("trackCoach", TrackCoach.class);
 		
 		// use the beans retrieved
 		System.out.println(coach.getDailyWorkout());
 		System.out.println(coach.getDailyFortune());
+		System.out.println(coach.getMessage());
+		System.out.println(coach.getEmail());
+		System.out.println(coach.getTeam());
 		
 		// close the application context
 		context.close();
