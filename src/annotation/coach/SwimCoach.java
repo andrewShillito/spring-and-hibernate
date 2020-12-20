@@ -1,5 +1,8 @@
 package annotation.coach;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,6 +37,16 @@ public class SwimCoach implements AnnotationCoach {
 	@Override
 	public String getOtherMessage() {
 		return otherMessage;
+	}
+	
+	@PostConstruct
+	public void customInitializationMethod() {
+		System.out.println("Inside custom initialization method of " + this.getClass().getName());
+	}
+	
+	@PreDestroy
+	public void customDestroyMethod() {
+		System.out.println("Inside custom destroy method of " + this.getClass().getName());
 	}
 	
 }

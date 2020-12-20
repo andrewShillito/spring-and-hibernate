@@ -118,3 +118,11 @@ We can use annotations to define bean scope with the annotation `@Scope`. Defaul
 @Scope("prototype")
 public class TennisCoach implements AnnotationCoach {
 ```
+
+### Bean lifecycle methods with annotations
+
+Can add custom code for initialization using `@PostConstruct` and destruction using `@PreDestroy`. The methods used for custom initialization and destruction can have any access modifier and can return any type. However, void is most commonly used as the return value is not able to be captured. The method cannot accept any arguments. The method can have any method name.
+
+`@PostConstruct` annotated methods execute after constructor and after injection of dependencies.
+`@PreDestroy` annotated methods execute before the bean is destroyed. Note that for prototype scoped beans, spring does not call the `@PreDestroy` method. This is because spring does not manage the complete lifecycle of a prototype bean. See relevant spring documentation [here](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-factory-scopes-prototype). This means that client code must handle releasing resources and cleaning up after scope prototype beans.
+
