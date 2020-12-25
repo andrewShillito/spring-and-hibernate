@@ -2,6 +2,18 @@
 
 The spring controller methods which handle request mappings are flexible in terms of the parameters they can accept. If we need to handle form data and add data to the Model, we can pass in the HttpServletRequest object and Model objects. This allows us to access and perform operations on form data. We can then put the resulting data following our operations into the Model where it can be accessed in our view templates.
 
+The `@RequestParam` annotation also allows us to add a request parameter as a method parameter for a controller method. Example usage in a controller method:
+
+```
+@RequestMapping("/processFormVersionThree")
+public String processFormVersionThree(@RequestParam("studentName") String studentName, Model model) {
+		
+  // convert the data to upper case
+  studentName = studentName.toUpperCase();
+  // etc...
+}
+```
+
 # Adding js, css, and image resources
 Step 1: Add the following entry to your Spring MVC configuration file: spring-mvc-demo-servlet.xml
 
