@@ -5,6 +5,6 @@
     
     <hr/>
     
-    <a href="showForm">Hello World form</a>
+    <a href="/spring-mvc-demo/form">Hello World form</a>
   </body>
 </html>

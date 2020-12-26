@@ -5,7 +5,7 @@
   </head>
   <body>
     
-    <form action="processFormVersionThree" method="GET">
+    <form action="/spring-mvc-demo/form/processVersionThree" method="GET">
       
       <input type="text" name="studentName" placeholder="Enter your name"/>
       

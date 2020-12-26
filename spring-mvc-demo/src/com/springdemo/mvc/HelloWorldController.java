@@ -8,19 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/form")
 public class HelloWorldController {
 
-	@RequestMapping("/showForm")
+	@RequestMapping("")
 	public String showForm() {
 		return "helloWorld-form";
 	}
 	
-	@RequestMapping("/processForm")
+	@RequestMapping("/process")
 	public String processForm() {
 		return "helloWorld";
 	}
 	
-	@RequestMapping("/processFormToUpper")
+	@RequestMapping("/processToUpper")
 	public String processFormToUpperCase(HttpServletRequest request, Model model) {
 		
 		// read the request parameter from the HTML form
@@ -39,7 +40,7 @@ public class HelloWorldController {
 		return "helloWorld";
 	}
 	
-	@RequestMapping("/processFormVersionThree")
+	@RequestMapping("/processVersionThree")
 	public String processFormVersionThree(@RequestParam("studentName") String studentName, Model model) {
 		
 		// convert the data to upper case
