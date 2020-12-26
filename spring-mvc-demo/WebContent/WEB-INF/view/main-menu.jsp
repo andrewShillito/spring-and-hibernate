@@ -7,7 +7,7 @@
     
     <a href="form">Hello World form</a>
     
-    </br>
+    <br />
     
     <a href="student/form">Student registration form</a>
     
