@@ -11,6 +11,7 @@ public class Student {
 	private String lastName;
 	private String country;
 	private String countryName;
+	private String favoriteLanguage;
 	
 	public Student() {
 
@@ -46,6 +47,14 @@ public class Student {
 
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
+	}
+
+	public String getFavoriteLanguage() {
+		return favoriteLanguage;
+	}
+
+	public void setFavoriteLanguage(String favoriteLanguage) {
+		this.favoriteLanguage = favoriteLanguage;
 	}
 		
 }

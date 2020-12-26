@@ -31,7 +31,9 @@
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 	
 	<!-- Add support for property file injection of country code values to StudentController -->
-	<util:properties  id="countryOptions" location="classpath:../countries.properties" />
+	<util:properties  id="countryOptions" location="classpath:../properties/countries.properties" />
+	
+	<util:properties  id="languageOptions" location="classpath:../properties/languages.properties" />
 
 </beans>
 
