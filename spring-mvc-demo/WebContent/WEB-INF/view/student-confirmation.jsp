@@ -14,7 +14,7 @@
 		
 		<br />
 		
-		Country: ${student.country}
+		Country: ${student.countryName}
 	
 	</body>
 
