@@ -30,10 +30,14 @@
 	<!-- Add support for css, js, and img resources -->
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 	
-	<!-- Add support for property file injection of country code values to StudentController -->
+	<!-- Add support for property file injection of language values to StudentController -->
 	<util:properties  id="countryOptions" location="classpath:../properties/countries.properties" />
-	
+
+	<!-- Add support for property file injection of language values to StudentController -->
 	<util:properties  id="languageOptions" location="classpath:../properties/languages.properties" />
+	
+	<!-- Add support for property file injection of operatingSystems values to StudentController -->
+	<util:properties  id="operatingSystems" location="classpath:../properties/os.properties" />
 
 </beans>
 
