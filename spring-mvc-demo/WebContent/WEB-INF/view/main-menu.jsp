@@ -5,6 +5,11 @@
     
     <hr/>
     
-    <a href="/spring-mvc-demo/form">Hello World form</a>
+    <a href="form">Hello World form</a>
+    
+    </br>
+    
+    <a href="student/form">Student registration form</a>
+    
   </body>
 </html>
