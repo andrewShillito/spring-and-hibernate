@@ -8,7 +8,11 @@
 </head>
 <body>
 
-	The customer <i>${customer.firstName} ${customer.lastName}</i> is confirmed.
+	The customer <i>${customer.firstName} ${customer.lastName}</i> is confirmed. 
+	
+	<br /><br />
+	
+	Free passes: ${customer.freePasses}
 
 </body>
 </html>
