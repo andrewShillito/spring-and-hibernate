@@ -3,7 +3,8 @@ package com.springdemo.mvc;
 public class UserMessages {
 
 	/** String error messages */
-	public static final String ENTRY_TOO_SHORT = "entry is too short";
+	public static final String ERROR_ENTRY_TOO_SHORT = "entry is too short";
+	public static final String ERROR_INVALID_FORMAT = "format is invalid";
 	public static final String ERROR_REQUIRED = "is required";
 
 	/** Numeric error messages */

@@ -27,6 +27,8 @@ public class CustomerController {
 			BindingResult bindingResult
 			) {
 		
+		System.out.println(bindingResult);
+		
 		if (bindingResult.hasErrors()) {
 			return "customer-form";
 		}

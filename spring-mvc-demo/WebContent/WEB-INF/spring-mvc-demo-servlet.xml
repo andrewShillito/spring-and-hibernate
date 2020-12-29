@@ -38,6 +38,13 @@
 	
 	<!-- Add support for property file injection of operatingSystems values to StudentController -->
 	<util:properties  id="operatingSystems" location="classpath:../properties/os.properties" />
+	
+	<!-- Add support for property file injection of operatingSystems values to StudentController -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+
+		<property name="basenames" value="resources/messages"/>
+	</bean>
 
 </beans>
 

@@ -3,6 +3,7 @@ package com.springdemo.mvc;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Customer {
@@ -12,14 +13,18 @@ public class Customer {
 	
 	private String firstName;
 	
-	@NotNull(message=UserMessages.ERROR_REQUIRED)
+	@NotNull
 	@Size(min=1, message=UserMessages.ERROR_REQUIRED)
-	@Size(min=2, message=UserMessages.ENTRY_TOO_SHORT)
+	@Size(min=2, message=UserMessages.ERROR_ENTRY_TOO_SHORT)
 	private String lastName;
 
+	@NotNull
 	@Min(value=minFreePasses, message=UserMessages.ERROR_GTE_THAN_ZERO)
 	@Max(value=maxFreePasses, message=UserMessages.ERROR_LTE_PREFIX + maxFreePasses)
-	private int freePasses;
+	private Integer freePasses;
+	
+	@Pattern(regexp="^[a-zA-Z0-9]{5}", message=UserMessages.ERROR_INVALID_FORMAT + " - must be 5 characters and/or digits.")
+	private String postalCode;
 	
 	public String getFirstName() {
 		return firstName;
@@ -37,12 +42,20 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public int getFreePasses() {
+	public Integer getFreePasses() {
 		return freePasses;
 	}
 
-	public void setFreePasses(int freePasses) {
+	public void setFreePasses(Integer freePasses) {
 		this.freePasses = freePasses;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 	
 }
