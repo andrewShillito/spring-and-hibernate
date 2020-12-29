@@ -9,7 +9,12 @@
     
     <br />
     
-    <a href="student/form">Student registration form</a>
+    <a href="student/form">Student form</a>
+    
+    <br />
+    
+    <a href="customer/form">Customer form</a>
+    
     
   </body>
 </html>
