@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.springdemo.mvc.validation.CourseCode;
+
 public class Customer {
 
 	private final int minFreePasses = 0;
@@ -26,6 +28,17 @@ public class Customer {
 	@Pattern(regexp="^[a-zA-Z0-9]{5}", message=UserMessages.ERROR_INVALID_FORMAT + " - must be 5 characters and/or digits.")
 	private String postalCode;
 	
+	@CourseCode
+	private String courseCode;
+	
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
