@@ -8,9 +8,9 @@ import org.hibernate.cfg.Configuration;
 
 import com.demo.hibernate.entity.Student;
 
-public class QueryStudentDemo {
+public class DeleteStudentDemo {
 
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
 		// create a hibernate session factory
 		SessionFactory factory = new Configuration()
@@ -22,35 +22,42 @@ public class QueryStudentDemo {
 		Session session = factory.getCurrentSession();
 		
 		try {
+			String query = "from Student s where s.lastName='UpdateDemo' AND s.email LIKE 'read.demo%@gmail.com'";
 			
 			// start a transaction
 			session.beginTransaction();
 			
-			String query = "from Student";
-			
-			// query for list of students
 			displayStudents(queryStudents(session, query), query);
 			
-			System.out.println("----");
+			List<Student> students = queryStudents(session, query);
+			displayStudents(students, query);
 			
-			// display resulting students
-			displayStudents(queryStudents(session, query), query);
-			
-			System.out.println("----");
-			
-			query = "from Student s where s.lastName='Last2'";
-			displayStudents(queryStudents(session, query), query);
-			
-			System.out.println("----");
-			
-			query = "from Student s where s.lastName='Last2'";
-			displayStudents(queryStudents(session, query), query);
-			
-			System.out.println("----");
-			query = "from Student s where s.firstName='Read' AND s.email LIKE '%demo%'";
-			displayStudents(queryStudents(session, query), query);
+			if (students.size() > 0) {
+				System.out.println("Removing Student with id = [" + students.get(0).getId() + "]");
+				session.delete(students.get(0));
+			}
 
-			// commit transaction
+			session.getTransaction().commit();
+
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			displayStudents(queryStudents(session, query), query);
+			
+			session.getTransaction().commit();
+			
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			
+			query = "from Student s where s.id=2";
+			displayStudents(queryStudents(session, query), query);
+			
+			query = "delete from Student where id=2";
+			System.out.println("Removing Student with id = [2]");
+			session.createQuery(query).executeUpdate();
+			
+			query = "from Student s where s.id=2";
+			displayStudents(queryStudents(session, query), query);
+			
 			session.getTransaction().commit();
 			
 		} finally {
@@ -58,12 +65,13 @@ public class QueryStudentDemo {
 		}
 
 	}
-	
+
 	public static List<Student> queryStudents(Session session, String query) {
 		return session.createQuery(query).getResultList();
 	}
-
+	
 	public static void displayStudents(List<Student> students, String query) {
+		System.out.println("----");
 		if (students.size() > 0) {
 			System.out.println("Query results for: [" + query + "]");
 			for (Student student : students) {
@@ -73,5 +81,4 @@ public class QueryStudentDemo {
 			System.out.println("No students found for query [" + query + "]");
 		}
 	}
-	
 }
